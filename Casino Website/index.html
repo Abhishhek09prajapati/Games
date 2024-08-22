@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>All Color game Register</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@20..48,100..700,0..1,-50..200" />
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:opsz,wght,FILL,GRAD@24,400,0,0" />
+    <link rel="stylesheet" href="style.css">
+</head>
+<style>
+   
+    .appdata1{
+        width: 100%;
+        height: max-content;
+        border: 0px solid black;
+        padding: 5px;
+        box-sizing: border-box;
+        margin: 5px 0px;  
+        display: flex;
+        flex-wrap: wrap;
+    }
+    .appdata2{
+        width: max-content;
+        height: max-content;
+        border: 1px solid black;
+        padding: 5px;
+        box-sizing: border-box;
+        margin: 5px 0px;  
+        display: flex;
+        flex-wrap: wrap;
+        margin: 3px;
+    }
+    #maindiv{
+       background-image: radial-gradient(rgba(24, 41, 196, 0.316), rgb(231, 186, 186),rgb(250, 137, 137));
+    }
+    .ansolr1{
+        text-decoration: none;
+        color: black;
+    }
+</style>
+<body>
+    <div style="padding: 5px 10px;">
+        <h2>List of Game 2024</h2>
+        <p>List of game of casino ,click here to register new company and get first deposit bonus 100%.</p>
+    </div>
+    <div class="appdata1"> </div>
+</body>
+<script>
+    fetch("https://api.npoint.io/259a30fbd4d8812e58bf")
+    .then(response => response.json())
+    .then(data => {
+        let maindiv = document.getElementsByClassName("appdata1")[0];
+        maindiv.id = "maindiv";
+        for(let i=0; i<data.length; i++){
+            let div = document.createElement("div");
+            let a = document.createElement("a");
+            a.href = data[i].website;
+            a.className="ansolr1";
+            div.className = "appdata2";
+            div.innerHTML = `
+                <img style="width:100px;heigth:100px;padding:0px 10px;" src="${data[i].Appimages}" alt="${data[i].name}">
+                <div>
+                    <h2>${data[i].Appname}</h2>
+                <p>${data[i].description}</p>
+                </div>
+            `;
+            a.appendChild(div);
+            maindiv.appendChild(a);
+        }
+    })
+</script>
+</html>
